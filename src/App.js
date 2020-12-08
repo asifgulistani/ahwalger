@@ -1,7 +1,8 @@
 import './App.css';
 import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { BrowserRouter as Router, Link, Route } from 'react-router-dom'; 
+import { BrowserRouter as Router, Link, NavLink, Route, Switch } from 'react-router-dom'; 
+import Posts from './component/posts/posts';
 
 
 function App() {
@@ -15,17 +16,17 @@ function App() {
           </button>
           <div className="collapse navbar-collapse" id="navbarCollapse">
             <ul className="navbar-nav mr-auto">
-              <li className="nav-item active">
-                <a className="nav-link" href="#">Home <span className="sr-only">(current)</span></a>
+              <li className="nav-item">
+                <NavLink className="nav-link" to="/home">Home</NavLink>
               </li>
               <li className="nav-item">
-                <a className="nav-link" href="#">Posts</a>
+                <NavLink className="nav-link" to="/posts">Posts</NavLink>
               </li>
               <li className="nav-item">
-                <a className="nav-link" href="#">Products</a>
+                <NavLink className="nav-link" to="/products">Products</NavLink>
               </li>
               <li className="nav-item">
-                <a className="nav-link" href="#">Admin</a>
+                <NavLink className="nav-link" to="/admin">Admin</NavLink>
               </li>
             </ul>
             <form className="form-inline mt-2 mt-md-0">
@@ -38,20 +39,24 @@ function App() {
         <main role="main" className="container">
           <div className="row">
             <div className="col-4">
-              <div className="jumbotron">
-                <h1>Available Link</h1>
-                <ul>
-                  <li><Link to={'/home'} >Home</Link></li>
-                  <li><Link to={'/posts'}>Posts</Link></li>
-                  <li><Link to={'/products'}>Products</Link></li>
-                  <li><Link to={'/admin'}>Admin</Link></li>
-                </ul>
+              <div className="card">
+                <div className="card-body">
+                  <h1>Available Link</h1>
+                  <ul>
+                    <li><Link to={'/home'} >Home</Link></li>
+                    <li><Link to={'/posts'}>Posts</Link></li>
+                    <li><Link to={'/products'}>Products</Link></li>
+                    <li><Link to={'/admin'}>Admin</Link></li>
+                  </ul>
+                </div>
               </div>
             </div>
             <div className="col">
-              <div className="jumbotron">
-                <h1>Navbar example</h1>
-                <Route path="/home" render={<sapn >working</sapn>} />
+              <div >
+                <Switch>
+                  <Route path="/home" render={()=> <span>working</span>} />
+                  <Route path="/posts" component={Posts} />
+                </Switch>
                 <p className="lead"></p>
               </div>
             </div>
